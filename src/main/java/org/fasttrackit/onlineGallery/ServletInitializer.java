@@ -1,4 +1,4 @@
-package org.fasttrackit;
+package org.fasttrackit.onlineGallery;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
