@@ -1,10 +1,9 @@
 package org.fasttrackit.onlineGallery.service;
 
-import org.fasttrackit.onlineGallery.domain.Folder;
 import org.fasttrackit.onlineGallery.domain.Photo;
 import org.fasttrackit.onlineGallery.exception.ResourceNotFoundException;
-import org.fasttrackit.onlineGallery.transfer.folder.GetFolderRequest;
-import org.fasttrackit.onlineGallery.transfer.folder.SaveFolderRequest;
+import org.fasttrackit.onlineGallery.persistance.PhotoRepository;
+import org.fasttrackit.onlineGallery.transfer.photo.GetPhotoRequest;
 import org.fasttrackit.onlineGallery.transfer.photo.SavePhotoRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,9 +11,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PhotoService {
-
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FolderService.class);
 
@@ -30,42 +30,46 @@ public class PhotoService {
 
         Photo photo = new Photo();
         photo.setName(request.getName());
+        photo.setUrl(request.getUrl());
+        photo.setCreatedDate(request.getCreatedDate());
 
-        return photoRepository.s(photo);
+        return photoRepository.save(photo);
     }
 
 
-    public Page<Folder> getFoldersBySearchParameters(GetFolderRequest request, Pageable pageable) {
-        LOGGER.info("Searching for folders {}", request);
+    public Page<Photo> getPhotos(GetPhotoRequest request, Pageable pageable) {
+        LOGGER.info("Searching for photos {}", request);
 
         if (request != null) {
             if (request.getPartialName() != null) {
-                return folderRepository.findByNameContaining(request.getPartialName(), pageable);
+                return photoRepository.findByNameContaining(request.getPartialName(), pageable);
+            } else if(request.getTags() != null){
+                return photoRepository.findByTagsContaining(request.getTags(), pageable);
             }
         }
-        return folderRepository.findAll(pageable);
+        return photoRepository.findAll(pageable);
     }
 
-    public Folder getFolder(long id){
-        LOGGER.info("Retrieving folder {}", id);
+    public Photo getPhoto(long id){
+        LOGGER.info("Retrieving photo {}", id);
 
-        return folderRepository.findById(id).orElseThrow(() ->
-                new ResourceNotFoundException("Folder " + id + " not found."));
+        return photoRepository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("Photo " + id + " not found."));
     }
 
-    public Folder updateFolder(long id, SaveFolderRequest request){
-        LOGGER.info("Updating folder {}: {}", id, request);
+    public Photo updatePhoto(long id, SavePhotoRequest request){
+        LOGGER.info("Updating photo {}: {}", id, request);
 
-        Folder folder  = getFolder(id);
+        Photo photo  = getPhoto(id);
 
-        BeanUtils.copyProperties(request, folder);
+        BeanUtils.copyProperties(request, photo);
 
-        return folderRepository.save(folder);
+        return photoRepository.save(photo);
     }
 
-    public void deleteFolder(long id) {
-        LOGGER.info("Deleting folder {}", id);
+    public void deletePhoto(long id) {
+        LOGGER.info("Deleting photo {}", id);
 
-        folderRepository.deleteById(id);
+        photoRepository.deleteById(id);
     }
 }

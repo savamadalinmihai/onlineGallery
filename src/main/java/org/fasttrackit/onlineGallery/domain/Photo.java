@@ -1,9 +1,11 @@
 package org.fasttrackit.onlineGallery.domain;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,7 +28,8 @@ public class Photo {
     private boolean taggedAsFavorite;
     @NotNull
     private Date createdDate;
-    private List<String> tags;
+    @ElementCollection
+    private List<String> tags = new ArrayList<String>();
 
     @Override
     public String toString() {

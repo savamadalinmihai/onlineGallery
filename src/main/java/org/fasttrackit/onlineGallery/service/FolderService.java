@@ -30,13 +30,14 @@ public class FolderService {
 
         Folder folder = new Folder();
         folder.setName(request.getName());
+        folder.setUrl(request.getUrl());
 
         return folderRepository.save(folder);
     }
 
 
-    public Page<Folder> getFoldersBySearchParameters(GetFolderRequest request, Pageable pageable) {
-        LOGGER.info("Searching for folders {}", request);
+    public Page<Folder> getFolders(GetFolderRequest request, Pageable pageable) {
+        LOGGER.info("Retrieving folders {}", request);
 
         if (request != null) {
             if (request.getPartialName() != null) {
