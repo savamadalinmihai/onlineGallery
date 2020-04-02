@@ -31,21 +31,6 @@ public class Photo {
     @ElementCollection
     private List<String> tags = new ArrayList<String>();
 
-    @Override
-    public String toString() {
-        return "Photo{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", url='" + url + '\'' +
-                ", xAxisDimension=" + xAxisDimension +
-                ", yAxisDimension=" + yAxisDimension +
-                ", sizeInKb=" + sizeInKb +
-                ", taggedAsFavorite=" + taggedAsFavorite +
-                ", createdDate=" + createdDate +
-                ", tags=" + tags +
-                '}';
-    }
-
     public Date getCreatedDate() {
         return createdDate;
     }
@@ -116,5 +101,20 @@ public class Photo {
 
     public void setSizeInKb(long sizeInKb) {
         this.sizeInKb = sizeInKb;
+    }
+
+    @Override
+    public String toString() {
+        return "Photo{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                ", xAxisDimension=" + xAxisDimension +
+                ", yAxisDimension=" + yAxisDimension +
+                ", sizeInKb=" + sizeInKb +
+                ", taggedAsFavorite=" + taggedAsFavorite +
+                ", createdDate=" + createdDate +
+                ", tags=" + tags +
+                '}';
     }
 }

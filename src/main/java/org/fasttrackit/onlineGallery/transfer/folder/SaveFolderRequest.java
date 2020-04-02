@@ -15,17 +15,6 @@ public class SaveFolderRequest {
     private long sizeInKb;
     private Date createdDate;
 
-    @Override
-    public String toString() {
-        return "SaveFolderRequest{" +
-                "name='" + name + '\'' +
-                ", url='" + url + '\'' +
-                ", numberOfFilesInside=" + numberOfFilesInside +
-                ", sizeInKb=" + sizeInKb +
-                ", createdDate=" + createdDate +
-                '}';
-    }
-
     public Date getCreatedDate() {
         return createdDate;
     }
@@ -64,5 +53,16 @@ public class SaveFolderRequest {
 
     public void setSizeInKb(long sizeInKb) {
         this.sizeInKb = sizeInKb;
+    }
+
+    @Override
+    public String toString() {
+        return "SaveFolderRequest{" +
+                "name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                ", numberOfFilesInside=" + numberOfFilesInside +
+                ", sizeInKb=" + sizeInKb +
+                ", createdDate=" + createdDate +
+                '}';
     }
 }

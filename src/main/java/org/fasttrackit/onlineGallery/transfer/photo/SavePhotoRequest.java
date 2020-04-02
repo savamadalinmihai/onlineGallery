@@ -21,20 +21,6 @@ public class SavePhotoRequest {
     private Date createdDate;
     private List<String> tags;
 
-    @Override
-    public String toString() {
-        return "Photo{" +
-                ", name='" + name + '\'' +
-                ", url='" + url + '\'' +
-                ", xAxisDimension=" + xAxisDimension +
-                ", yAxisDimension=" + yAxisDimension +
-                ", sizeInKb=" + sizeInKb +
-                ", taggedAsFavorite=" + taggedAsFavorite +
-                ", createdDate=" + createdDate +
-                ", tags=" + tags +
-                '}';
-    }
-
     public Date getCreatedDate() {
         return createdDate;
     }
@@ -97,5 +83,19 @@ public class SavePhotoRequest {
 
     public void setSizeInKb(long sizeInKb) {
         this.sizeInKb = sizeInKb;
+    }
+
+    @Override
+    public String toString() {
+        return "Photo{" +
+                ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                ", xAxisDimension=" + xAxisDimension +
+                ", yAxisDimension=" + yAxisDimension +
+                ", sizeInKb=" + sizeInKb +
+                ", taggedAsFavorite=" + taggedAsFavorite +
+                ", createdDate=" + createdDate +
+                ", tags=" + tags +
+                '}';
     }
 }

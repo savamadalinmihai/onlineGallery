@@ -9,16 +9,7 @@ public class GetPhotoRequest {
     private List<String> tags = new ArrayList<String>();
     private Date date;
 
-    @Override
-    public String toString() {
-        return "GetPhotoRequest{" +
-                "partialName='" + partialName + '\'' +
-                ", tag='" + tags + '\'' +
-                ", date=" + date +
-                '}';
-    }
-
-    public List getTags() {
+    public List<String> getTags() {
         return tags;
     }
 
@@ -40,5 +31,14 @@ public class GetPhotoRequest {
 
     public void setPartialName(String partialName) {
         this.partialName = partialName;
+    }
+
+    @Override
+    public String toString() {
+        return "GetPhotoRequest{" +
+                "partialName='" + partialName + '\'' +
+                ", tag='" + tags + '\'' +
+                ", date=" + date +
+                '}';
     }
 }

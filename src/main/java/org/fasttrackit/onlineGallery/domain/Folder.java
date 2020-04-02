@@ -24,18 +24,6 @@ public class Folder {
     @NotNull
     private Date createdDate;
 
-    @Override
-    public String toString() {
-        return "Folder{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", url='" + url + '\'' +
-                ", numberOfFilesInside=" + numberOfFilesInside +
-                ", sizeInKb=" + sizeInKb +
-                ", createdDate=" + createdDate +
-                '}';
-    }
-
     public Date getCreatedDate() {
         return createdDate;
     }
@@ -82,5 +70,17 @@ public class Folder {
 
     public void setSizeInKb(long sizeInKb) {
         this.sizeInKb = sizeInKb;
+    }
+
+    @Override
+    public String toString() {
+        return "Folder{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                ", numberOfFilesInside=" + numberOfFilesInside +
+                ", sizeInKb=" + sizeInKb +
+                ", createdDate=" + createdDate +
+                '}';
     }
 }

@@ -4,6 +4,6 @@ spring:
     hibernate.ddl-auto: update
     database-platform: org.hibernate.dialect.MySQL8Dialect
   datasource:
-    url: jdbc:mysql://localhost:3306/online-gallery
+    url: jdbc:mysql://localhost:3306/online-gallery?serverTimezone=UTC
     username: online-gallery-admin
     password: online-gallery-admin
