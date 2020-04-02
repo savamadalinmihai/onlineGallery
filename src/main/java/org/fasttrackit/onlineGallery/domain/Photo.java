@@ -1,9 +1,6 @@
 package org.fasttrackit.onlineGallery.domain;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,7 +25,9 @@ public class Photo {
     private boolean taggedAsFavorite;
     @NotNull
     private Date createdDate;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable
+    @Column
     private List<String> tags = new ArrayList<String>();
 
     public Date getCreatedDate() {
