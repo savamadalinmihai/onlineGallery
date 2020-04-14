@@ -44,7 +44,7 @@ public class PhotoService {
             if (request.getPartialName() != null) {
                 return photoRepository.findByNameContaining(request.getPartialName(), pageable);
             } else if(request.getTags() != null){
-                return photoRepository.findByTagsContaining(request.getTags(), pageable);
+                return photoRepository.findByTagsContainingIn(request.getTags(), pageable);
             }
         }
         return photoRepository.findAll(pageable);

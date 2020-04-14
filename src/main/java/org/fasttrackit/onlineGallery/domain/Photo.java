@@ -26,8 +26,6 @@ public class Photo {
     @NotNull
     private Date createdDate;
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable
-    @Column
     private List<String> tags = new ArrayList<String>();
 
     public Date getCreatedDate() {

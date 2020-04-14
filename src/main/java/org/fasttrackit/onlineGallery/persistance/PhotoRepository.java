@@ -15,7 +15,7 @@ public interface PhotoRepository extends JpaRepository<Photo, Long> {
     @Query(value = "SELECT * FROM photo WHERE `name` LIKE '%?0'", nativeQuery = true)
     Page<Photo> findPhotosBySearchParameters(String partialName, Pageable pageable);
 
-    Page<Photo> findByTagsContaining(List tags, Pageable pageable);
+    Page<Photo> findByTagsContainingIn(List<String> tags, Pageable pageable);
 
 
 }
