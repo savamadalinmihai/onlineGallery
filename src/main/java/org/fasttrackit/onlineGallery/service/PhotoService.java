@@ -36,7 +36,6 @@ public class PhotoService {
         return photoRepository.save(photo);
     }
 
-
     public Page<Photo> getPhotos(GetPhotoRequest request, Pageable pageable) {
         LOGGER.info("Searching for photos {}", request);
 

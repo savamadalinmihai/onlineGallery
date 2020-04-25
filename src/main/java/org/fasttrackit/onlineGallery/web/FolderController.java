@@ -53,9 +53,9 @@ public class FolderController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteFolder(@PathVariable long id){
+    public ResponseEntity<Void> deleteFolder(@PathVariable long id){
       folderService.deleteFolder(id);
 
-      return new ResponseEntity(HttpStatus.NO_CONTENT);
+      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

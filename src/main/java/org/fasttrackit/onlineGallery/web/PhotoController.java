@@ -53,10 +53,10 @@ public class PhotoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deletePhoto(@PathVariable long id){
+    public ResponseEntity<Void> deletePhoto(@PathVariable long id){
         photoService.deletePhoto(id);
 
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
 

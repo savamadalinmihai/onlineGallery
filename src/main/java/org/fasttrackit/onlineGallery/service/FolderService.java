@@ -35,7 +35,6 @@ public class FolderService {
         return folderRepository.save(folder);
     }
 
-
     public Page<Folder> getFolders(GetFolderRequest request, Pageable pageable) {
         LOGGER.info("Retrieving folders {}", request);
 
