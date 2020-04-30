@@ -2,7 +2,6 @@ package org.fasttrackit.onlineGallery.transfer.photo;
 
 import javax.validation.constraints.NotNull;
 import java.util.Date;
-import java.util.List;
 
 public class SavePhotoRequest {
 
@@ -19,7 +18,6 @@ public class SavePhotoRequest {
     private boolean taggedAsFavorite;
     @NotNull
     private Date createdDate;
-    private List<String> tags;
 
     public Date getCreatedDate() {
         return createdDate;
@@ -27,14 +25,6 @@ public class SavePhotoRequest {
 
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
-    }
-
-    public List<String> getTags() {
-        return tags;
-    }
-
-    public void setTags(List<String> tags) {
-        this.tags = tags;
     }
 
     public boolean isTaggedAsFavorite() {
@@ -95,7 +85,6 @@ public class SavePhotoRequest {
                 ", sizeInKb=" + sizeInKb +
                 ", taggedAsFavorite=" + taggedAsFavorite +
                 ", createdDate=" + createdDate +
-                ", tags=" + tags +
                 '}';
     }
 }

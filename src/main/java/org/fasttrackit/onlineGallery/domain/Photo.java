@@ -2,9 +2,9 @@ package org.fasttrackit.onlineGallery.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Photo {
@@ -25,8 +25,13 @@ public class Photo {
     private boolean taggedAsFavorite;
     @NotNull
     private Date createdDate;
-    @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> tags = new ArrayList<String>();
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "photo_tags",
+    joinColumns = @JoinColumn(name = "photo_id"),
+    inverseJoinColumns = @JoinColumn (name = "tag_id"))
+    private Set<Photo> photos = new HashSet<>();
+
 
     public Date getCreatedDate() {
         return createdDate;
@@ -34,14 +39,6 @@ public class Photo {
 
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
-    }
-
-    public List<String> getTags() {
-        return tags;
-    }
-
-    public void setTags(List<String> tags) {
-        this.tags = tags;
     }
 
     public boolean isTaggedAsFavorite() {
@@ -111,7 +108,6 @@ public class Photo {
                 ", sizeInKb=" + sizeInKb +
                 ", taggedAsFavorite=" + taggedAsFavorite +
                 ", createdDate=" + createdDate +
-                ", tags=" + tags +
                 '}';
     }
 }
