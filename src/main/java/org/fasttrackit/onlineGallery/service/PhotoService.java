@@ -5,6 +5,7 @@ import org.fasttrackit.onlineGallery.exception.ResourceNotFoundException;
 import org.fasttrackit.onlineGallery.persistance.PhotoRepository;
 import org.fasttrackit.onlineGallery.transfer.photo.GetPhotoRequest;
 import org.fasttrackit.onlineGallery.transfer.photo.SavePhotoRequest;
+import org.fasttrackit.onlineGallery.transfer.tag.GetTagRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -36,14 +37,14 @@ public class PhotoService {
         return photoRepository.save(photo);
     }
 
-    public Page<Photo> getPhotos(GetPhotoRequest request, Pageable pageable) {
+    public Page<Photo> getPhotos(GetPhotoRequest request, GetTagRequest tagRequest, Pageable pageable) {
         LOGGER.info("Searching for photos {}", request);
 
         if (request != null) {
             if (request.getPartialName() != null) {
                 return photoRepository.findByNameContaining(request.getPartialName(), pageable);
-            } else if(request.getTags() != null){
-                return photoRepository.findByTagsIn(request.getTags(), pageable);
+            } else if(tagRequest.getTagName() != null){
+                return photoRepository.findByTag(tagRequest.getTagName(), pageable);
             }
         }
         return photoRepository.findAll(pageable);

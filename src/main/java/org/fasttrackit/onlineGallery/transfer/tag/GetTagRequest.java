@@ -2,6 +2,7 @@ package org.fasttrackit.onlineGallery.transfer.tag;
 
 public class GetTagRequest {
 
+    private String partialName;
     private String tagName;
 
     public String getTagName() {
@@ -12,10 +13,19 @@ public class GetTagRequest {
         this.tagName = tagName;
     }
 
+    public String getPartialName() {
+        return partialName;
+    }
+
+    public void setPartialName(String partialName) {
+        this.partialName = partialName;
+    }
+
     @Override
     public String toString() {
         return "GetTagRequest{" +
-                "tagName='" + tagName + '\'' +
+                "partialName='" + partialName + '\'' +
+                ", tagName='" + tagName + '\'' +
                 '}';
     }
 }
