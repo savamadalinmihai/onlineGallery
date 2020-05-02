@@ -27,10 +27,22 @@ public class Photo {
     private Date createdDate;
 
     @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinTable(name = "photo_tags",
-    joinColumns = @JoinColumn(name = "photo_id"),
-    inverseJoinColumns = @JoinColumn (name = "tag_id"))
-    private Set<Photo> photos = new HashSet<>();
+    @JoinTable(name = "photo_tag",
+        joinColumns = @JoinColumn(name = "photo_id"),
+        inverseJoinColumns = @JoinColumn (name = "tag_id"))
+    private Set<Tag> tags = new HashSet<>();
+
+    public void addTagToPhoto(Tag tag){
+        tags.add(tag);
+
+        tag.getPhotos().add(this);
+    }
+
+    public void removeTagFromPhoto(Tag tag){
+        tags.remove(tag);
+
+        tag.getPhotos().remove(this);
+    }
 
 
     public Date getCreatedDate() {
@@ -95,6 +107,14 @@ public class Photo {
 
     public void setSizeInKb(long sizeInKb) {
         this.sizeInKb = sizeInKb;
+    }
+
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
     }
 
     @Override

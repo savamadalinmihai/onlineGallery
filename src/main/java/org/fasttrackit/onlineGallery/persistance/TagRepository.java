@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TagRepository extends JpaRepository<Tag, Long> {
 
-    Page<Tag> findByNameContaining(String partialName, Pageable pageable);
+    Page<Tag> findByTagNameContaining(String partialName, Pageable pageable);
 }

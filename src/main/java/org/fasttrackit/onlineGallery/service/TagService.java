@@ -50,7 +50,7 @@ public class TagService {
 
         if (request != null) {
             if (request.getPartialName() != null) {
-                return tagRepository.findByNameContaining(request.getPartialName(), pageable);
+                return tagRepository.findByTagNameContaining(request.getPartialName(), pageable);
             }
         }
         return tagRepository.findAll(pageable);

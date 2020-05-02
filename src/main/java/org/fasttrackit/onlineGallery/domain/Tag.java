@@ -34,6 +34,14 @@ public class Tag {
         this.tagName = tagName;
     }
 
+    public Set<Photo> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(Set<Photo> photos) {
+        this.photos = photos;
+    }
+
     @Override
     public String toString() {
         return "Tag{" +

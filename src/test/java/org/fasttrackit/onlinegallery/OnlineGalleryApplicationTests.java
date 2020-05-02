@@ -1,4 +1,4 @@
-package org.fasttrackit;
+package org.fasttrackit.onlinegallery;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

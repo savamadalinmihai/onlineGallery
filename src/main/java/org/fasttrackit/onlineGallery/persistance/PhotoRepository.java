@@ -9,7 +9,7 @@ public interface PhotoRepository extends JpaRepository<Photo, Long> {
 
     Page<Photo> findByNameContaining(String partialName, Pageable pageable);
 
-    Page<Photo> findByTag(String tagName, Pageable pageable);
+    Page<Photo> findPhotoBy(String tagName, Pageable pageable);
 
 }
 

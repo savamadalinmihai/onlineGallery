@@ -1,8 +1,10 @@
 package org.fasttrackit.onlineGallery.service;
 
 import org.fasttrackit.onlineGallery.domain.Photo;
+import org.fasttrackit.onlineGallery.domain.Tag;
 import org.fasttrackit.onlineGallery.exception.ResourceNotFoundException;
 import org.fasttrackit.onlineGallery.persistance.PhotoRepository;
+import org.fasttrackit.onlineGallery.transfer.photo.AddTagsToPhotoRequest;
 import org.fasttrackit.onlineGallery.transfer.photo.GetPhotoRequest;
 import org.fasttrackit.onlineGallery.transfer.photo.SavePhotoRequest;
 import org.fasttrackit.onlineGallery.transfer.tag.GetTagRequest;
@@ -14,20 +16,40 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 public class PhotoService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FolderService.class);
 
     private final PhotoRepository photoRepository;
+    private final TagService tagService;
 
     @Autowired
-    public PhotoService(PhotoRepository photoRepository) {
+    public PhotoService(PhotoRepository photoRepository, TagService tagService) {
         this.photoRepository = photoRepository;
+        this.tagService = tagService;
+    }
+
+    @Transactional
+    public void addTagToPhoto(AddTagsToPhotoRequest request){
+        LOGGER.info("Adding tag to photo {}", request);
+
+        Photo photo = photoRepository.findById(request.getPhotoId())
+                .orElse(new Photo());
+
+        if (photo.getTags() == null){
+            Tag tag = tagService.getTag(request.getPhotoId());
+
+            photo.addTagToPhoto(tag);
+        }
+
+        photoRepository.save(photo);
     }
 
     public Photo createPhoto(SavePhotoRequest request) {
-        LOGGER.info("Creating folder {}", request);
+        LOGGER.info("Creating photo {}", request);
 
         Photo photo = new Photo();
         photo.setName(request.getName());
@@ -44,7 +66,7 @@ public class PhotoService {
             if (request.getPartialName() != null) {
                 return photoRepository.findByNameContaining(request.getPartialName(), pageable);
             } else if(tagRequest.getTagName() != null){
-                return photoRepository.findByTag(tagRequest.getTagName(), pageable);
+                return photoRepository.findPhotoBy(tagRequest.getTagName(), pageable);
             }
         }
         return photoRepository.findAll(pageable);
