@@ -1,11 +1,14 @@
 package org.fasttrackit.onlineGallery.transfer.photo;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 public class AddTagsToPhotoRequest {
 
-    private long photoId;//cusotmerId
-    private List<Long> tagIds;//productIds
+    @NotNull
+    private long photoId;
+    @NotNull
+    private List<Long> tagIds;
 
     public long getPhotoId() {
         return photoId;
