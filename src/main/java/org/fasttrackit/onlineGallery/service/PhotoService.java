@@ -53,8 +53,12 @@ public class PhotoService {
 
         Photo photo = new Photo();
         photo.setName(request.getName());
-        photo.setUrl(request.getUrl());
         photo.setCreatedDate(request.getCreatedDate());
+        photo.setTaggedAsFavorite(request.isTaggedAsFavorite());
+        photo.setxAxisDimension(request.getxAxisDimension());
+        photo.setyAxisDimension(request.getyAxisDimension());
+        photo.setSizeInKb(request.getSizeInKb());
+        photo.setUrl(request.getUrl());
 
         return photoRepository.save(photo);
     }
