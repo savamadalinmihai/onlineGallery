@@ -2,7 +2,7 @@ package org.fasttrackit.onlineGallery.web;
 
 import org.fasttrackit.onlineGallery.domain.Photo;
 import org.fasttrackit.onlineGallery.service.PhotoService;
-import org.fasttrackit.onlineGallery.transfer.photo.GetPhotoRequest;
+import org.fasttrackit.onlineGallery.transfer.photo.GetPhotosRequest;
 import org.fasttrackit.onlineGallery.transfer.photo.SavePhotoRequest;
 import org.fasttrackit.onlineGallery.transfer.tag.GetTagRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +40,7 @@ public class PhotoController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<Photo>> getPhotos(GetPhotoRequest request, GetTagRequest tagRequest, Pageable pageable){
+    public ResponseEntity<Page<Photo>> getPhotos(GetPhotosRequest request, GetTagRequest tagRequest, Pageable pageable){
         Page<Photo> photos = photoService.getPhotos(request, tagRequest, pageable);
         return new ResponseEntity<>(photos, HttpStatus.OK);
     }

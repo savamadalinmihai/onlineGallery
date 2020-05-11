@@ -5,7 +5,7 @@ import org.fasttrackit.onlineGallery.domain.Tag;
 import org.fasttrackit.onlineGallery.exception.ResourceNotFoundException;
 import org.fasttrackit.onlineGallery.persistance.PhotoRepository;
 import org.fasttrackit.onlineGallery.transfer.photo.AddTagsToPhotoRequest;
-import org.fasttrackit.onlineGallery.transfer.photo.GetPhotoRequest;
+import org.fasttrackit.onlineGallery.transfer.photo.GetPhotosRequest;
 import org.fasttrackit.onlineGallery.transfer.photo.SavePhotoRequest;
 import org.fasttrackit.onlineGallery.transfer.tag.GetTagRequest;
 import org.slf4j.Logger;
@@ -33,18 +33,15 @@ public class PhotoService {
     }
 
     @Transactional
-    public void addTagToPhoto(AddTagsToPhotoRequest request){
+    public void addTagToPhoto(AddTagsToPhotoRequest request) {
         LOGGER.info("Adding tag to photo {}", request);
 
         Photo photo = photoRepository.findById(request.getPhotoId())
                 .orElse(new Photo());
-
-        if (photo.getTags() == null){
-            Tag tag = tagService.getTag(request.getPhotoId());
-
+        for (Long tagId : request.getTagIds()) {
+            Tag tag = tagService.getTag(tagId);
             photo.addTagToPhoto(tag);
         }
-
         photoRepository.save(photo);
     }
 
@@ -63,30 +60,30 @@ public class PhotoService {
         return photoRepository.save(photo);
     }
 
-    public Page<Photo> getPhotos(GetPhotoRequest request, GetTagRequest tagRequest, Pageable pageable) {
+    public Page<Photo> getPhotos(GetPhotosRequest request, GetTagRequest tagRequest, Pageable pageable) {
         LOGGER.info("Searching for photos {}", request);
 
         if (request != null) {
             if (request.getPartialName() != null) {
                 return photoRepository.findByNameContaining(request.getPartialName(), pageable);
-            } else if(tagRequest.getTagName() != null){
+            } else if (tagRequest.getTagName() != null) {
                 return photoRepository.findPhotoBy(tagRequest.getTagName(), pageable);
             }
         }
         return photoRepository.findAll(pageable);
     }
 
-    public Photo getPhoto(long id){
+    public Photo getPhoto(long id) {
         LOGGER.info("Retrieving photo {}", id);
 
         return photoRepository.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("Photo " + id + " not found."));
     }
 
-    public Photo updatePhoto(long id, SavePhotoRequest request){
+    public Photo updatePhoto(long id, SavePhotoRequest request) {
         LOGGER.info("Updating photo {}: {}", id, request);
 
-        Photo photo  = getPhoto(id);
+        Photo photo = getPhoto(id);
 
         BeanUtils.copyProperties(request, photo);
 

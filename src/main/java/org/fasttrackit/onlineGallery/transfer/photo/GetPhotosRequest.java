@@ -2,7 +2,7 @@ package org.fasttrackit.onlineGallery.transfer.photo;
 
 import java.util.Date;
 
-public class GetPhotoRequest {
+public class GetPhotosRequest {
     private String partialName;
     private Date date;
 

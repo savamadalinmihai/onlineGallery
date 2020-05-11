@@ -39,10 +39,10 @@ public class TagService {
     }
 
     public Tag getTag(long id){
-        LOGGER.info("Retreiving tag {}", id);
+        LOGGER.info("Retrieving tag {}", id);
 
         return tagRepository.findById(id).orElseThrow(() ->
-                new ResourceNotFoundException("Customer " + id + " not found"));
+                new ResourceNotFoundException("Tag " + id + " not found"));
     }
 
     public Page<Tag> getTags(GetTagRequest request, Pageable pageable) {
