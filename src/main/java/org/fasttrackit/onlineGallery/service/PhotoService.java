@@ -45,6 +45,19 @@ public class PhotoService {
         photoRepository.save(photo);
     }
 
+    @Transactional
+    public void removeTagFromPhoto(AddTagsToPhotoRequest request){
+        LOGGER.info("Removing tag from photo {}", request);
+
+        Photo photo = photoRepository.findById(request.getPhotoId()).orElse(new Photo());
+
+        for (Long tagId : request.getTagIds()){
+            Tag tag = tagService.getTag(tagId);
+            photo.removeTagFromPhoto(tag);
+        }
+        photoRepository.save(photo);
+    }
+
     public Photo createPhoto(SavePhotoRequest request) {
         LOGGER.info("Creating photo {}", request);
 

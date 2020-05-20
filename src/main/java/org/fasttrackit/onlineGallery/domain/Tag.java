@@ -1,9 +1,7 @@
 package org.fasttrackit.onlineGallery.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,6 +11,8 @@ public class Tag {
     @Id
     @GeneratedValue
     private long id;
+    @NotNull
+    @Column(unique = true)
     private String tagName;
 
     @ManyToMany(mappedBy = "tags")

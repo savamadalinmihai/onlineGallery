@@ -11,9 +11,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.TransactionSystemException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 @SpringBootTest
@@ -57,5 +58,35 @@ public class PhotoServiceIntegrationTests {
         tagRequest.setTagIds(tagList);
 
         photoService.addTagToPhoto(tagRequest);
+
+        assertThat(photo.getTags(), notNullValue());
+    }
+
+    @Test
+    void removeTagFromPhoto_whenValidRequest_thenTagIsRemoved(){
+        Photo photo = photoTestSteps.createPhoto();
+
+        AddTagsToPhotoRequest request = new AddTagsToPhotoRequest();
+        request.setPhotoId(photo.getId());
+
+        List<Long> list = Collections.singletonList(20L);
+
+        request.setTagIds(list);
+
+        photoService.removeTagFromPhoto(request);
+    }
+
+    @Test
+    void addTagToPhoto_whenNewTag_thenTagIsCreated(){
+        Photo photo = photoTestSteps.createPhoto();
+
+        AddTagsToPhotoRequest tagRequest = new AddTagsToPhotoRequest();
+        tagRequest.setPhotoId(photo.getId());
+
+        List<Long> tagList = new ArrayList<>();
+        tagList.add(19L);
+        tagList.add(20L);
+        tagList.add(21L);
+        tagRequest.setTagIds(tagList);
     }
 }
