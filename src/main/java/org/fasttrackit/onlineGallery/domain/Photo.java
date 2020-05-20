@@ -32,6 +32,18 @@ public class Photo {
         inverseJoinColumns = @JoinColumn (name = "tag_id"))
     private Set<Tag> tags = new HashSet<>();
 
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "photo_folder",
+        joinColumns = @JoinColumn(name = "photo_id"),
+        inverseJoinColumns = @JoinColumn(name = "folder_id"))
+    private Set<Folder> folders = new HashSet<>();
+
+    public void addPhotoToFolder(Folder folder){
+        folders.add(folder);
+
+        folder.getPhotos().add(this);
+    }
+
     public void addTagToPhoto(Tag tag){
         tags.add(tag);
 
@@ -115,6 +127,14 @@ public class Photo {
 
     public void setTags(Set<Tag> tags) {
         this.tags = tags;
+    }
+
+    public Set<Folder> getFolders() {
+        return folders;
+    }
+
+    public void setFolders(Set<Folder> folders) {
+        this.folders = folders;
     }
 
     @Override
