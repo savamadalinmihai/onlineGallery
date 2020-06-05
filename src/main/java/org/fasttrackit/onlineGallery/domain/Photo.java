@@ -11,6 +11,7 @@ public class Photo {
 
     @Id
     @GeneratedValue
+    @Column(name = "photo_id")
     private long id;
     @NotNull
     private String name;

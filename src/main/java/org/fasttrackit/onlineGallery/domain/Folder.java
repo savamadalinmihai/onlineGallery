@@ -1,9 +1,6 @@
 package org.fasttrackit.onlineGallery.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.HashSet;
@@ -15,6 +12,7 @@ public class Folder {
 
     @Id
     @GeneratedValue
+    @Column(name = "folder_id")
     private long id;
     @NotNull
     private String name;

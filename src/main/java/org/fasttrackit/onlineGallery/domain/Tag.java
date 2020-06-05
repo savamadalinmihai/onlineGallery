@@ -10,6 +10,7 @@ public class Tag {
 
     @Id
     @GeneratedValue
+    @Column(name = "tag_id")
     private long id;
     @NotNull
     @Column(unique = true)

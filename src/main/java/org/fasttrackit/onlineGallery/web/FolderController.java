@@ -2,6 +2,7 @@ package org.fasttrackit.onlineGallery.web;
 
 
 import org.fasttrackit.onlineGallery.domain.Folder;
+import org.fasttrackit.onlineGallery.domain.Photo;
 import org.fasttrackit.onlineGallery.service.FolderService;
 import org.fasttrackit.onlineGallery.transfer.folder.GetFolderRequest;
 import org.fasttrackit.onlineGallery.transfer.folder.SaveFolderRequest;
@@ -13,9 +14,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Set;
 
 @CrossOrigin
-@RequestMapping("/folders")
+@RequestMapping("/folder")
 @RestController
 public class FolderController {
 
@@ -35,6 +37,7 @@ public class FolderController {
     @GetMapping("/{id}")
     public ResponseEntity<Folder> getFolder(@PathVariable long id){
         Folder folder = folderService.getFolder(id);
+        Set<Photo> photos = folder.getPhotos();
         return new ResponseEntity<>(folder, HttpStatus.OK);
     }
 
