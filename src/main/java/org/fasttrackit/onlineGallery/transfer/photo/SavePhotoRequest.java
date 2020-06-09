@@ -8,7 +8,7 @@ public class SavePhotoRequest {
     @NotNull
     private String name;
     @NotNull
-    private String url;
+    private String path;
     @NotNull
     private int xAxisDimension;
     @NotNull
@@ -43,12 +43,12 @@ public class SavePhotoRequest {
         this.name = name;
     }
 
-    public String getUrl() {
-        return url;
+    public String getPath() {
+        return path;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public int getxAxisDimension() {
@@ -79,7 +79,7 @@ public class SavePhotoRequest {
     public String toString() {
         return "Photo{" +
                 ", name='" + name + '\'' +
-                ", url='" + url + '\'' +
+                ", path='" + path + '\'' +
                 ", xAxisDimension=" + xAxisDimension +
                 ", yAxisDimension=" + yAxisDimension +
                 ", sizeInKb=" + sizeInKb +

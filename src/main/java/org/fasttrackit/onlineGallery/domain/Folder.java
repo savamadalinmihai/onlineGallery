@@ -17,7 +17,7 @@ public class Folder {
     @NotNull
     private String name;
     @NotNull
-    private String url;
+    private String path;
     @NotNull
     private int numberOfFilesInside;
     @NotNull
@@ -52,12 +52,12 @@ public class Folder {
         this.name = name;
     }
 
-    public String getUrl() {
-        return url;
+    public String getPath() {
+        return path;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public int getNumberOfFilesInside() {
@@ -89,7 +89,7 @@ public class Folder {
         return "Folder{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", url='" + url + '\'' +
+                ", path='" + path + '\'' +
                 ", numberOfFilesInside=" + numberOfFilesInside +
                 ", sizeInKb=" + sizeInKb +
                 ", createdDate=" + createdDate +

@@ -27,7 +27,7 @@ public class PhotoTestSteps {
         request.setTaggedAsFavorite(false);
         request.setxAxisDimension(6000);
         request.setyAxisDimension(4000);
-        request.setUrl("www.siteurl.com");
+        request.setPath("www.siteurl.com");
 
         Photo photo = photoService.createPhoto(request);
 
@@ -39,7 +39,7 @@ public class PhotoTestSteps {
         assertThat(photo.isTaggedAsFavorite(), is(request.isTaggedAsFavorite()));
         assertThat(photo.getxAxisDimension(), is(request.getxAxisDimension()));
         assertThat(photo.getyAxisDimension(), is(request.getyAxisDimension()));
-        assertThat(photo.getUrl(), is(request.getUrl()));
+        assertThat(photo.getPath(), is(request.getPath()));
 
         return photo;
     }

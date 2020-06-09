@@ -8,7 +8,7 @@ public class SaveFolderRequest {
     @NotNull
     private String name;
     @NotNull
-    private String url;
+    private String path;
     @NotNull
     private int numberOfFilesInside;
     @NotNull
@@ -31,12 +31,12 @@ public class SaveFolderRequest {
         this.name = name;
     }
 
-    public String getUrl() {
-        return url;
+    public String getPath() {
+        return path;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public int getNumberOfFilesInside() {
@@ -59,7 +59,7 @@ public class SaveFolderRequest {
     public String toString() {
         return "SaveFolderRequest{" +
                 "name='" + name + '\'' +
-                ", url='" + url + '\'' +
+                ", path='" + path + '\'' +
                 ", numberOfFilesInside=" + numberOfFilesInside +
                 ", sizeInKb=" + sizeInKb +
                 ", createdDate=" + createdDate +

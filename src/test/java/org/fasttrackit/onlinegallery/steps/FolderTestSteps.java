@@ -22,7 +22,7 @@ public class FolderTestSteps {
     public Folder createFolder(){
         SaveFolderRequest request = new SaveFolderRequest();
         request.setName("honeymoon");
-        request.setUrl("http://url");
+        request.setPath("http://url");
         request.setCreatedDate(Date.valueOf("2019-12-22"));
 
         Folder folder = folderService.createFolder(request);
@@ -30,7 +30,7 @@ public class FolderTestSteps {
         assertThat(folder, notNullValue());
         assertThat(folder.getId(), greaterThan(0L));
         assertThat(folder.getName(), is(request.getName()));
-        assertThat(folder.getUrl(), is(request.getUrl()));
+        assertThat(folder.getPath(), is(request.getPath()));
         assertThat(folder.getCreatedDate(), is(request.getCreatedDate()));
 
         return folder;

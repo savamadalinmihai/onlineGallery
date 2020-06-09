@@ -30,7 +30,7 @@ public class FolderService {
 
         Folder folder = new Folder();
         folder.setName(request.getName());
-        folder.setUrl(request.getUrl());
+        folder.setPath(request.getPath());
         folder.setCreatedDate(request.getCreatedDate());
 
         return folderRepository.save(folder);

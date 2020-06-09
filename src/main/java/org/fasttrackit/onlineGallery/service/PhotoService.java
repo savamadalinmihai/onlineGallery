@@ -68,7 +68,7 @@ public class PhotoService {
         photo.setxAxisDimension(request.getxAxisDimension());
         photo.setyAxisDimension(request.getyAxisDimension());
         photo.setSizeInKb(request.getSizeInKb());
-        photo.setUrl(request.getUrl());
+        photo.setPath(request.getPath());
 
         return photoRepository.save(photo);
     }
