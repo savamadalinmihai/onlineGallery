@@ -30,7 +30,7 @@ public class PhotoServiceIntegrationTests {
     @Test
     void createPhoto_whenMissingName_thenExceptionIsThrown() {
         SavePhotoRequest request = new SavePhotoRequest();
-        request.setPath("asfas");
+        request.setImageData("asfas");
         request.setyAxisDimension(124);
         try {
             photoService.createPhoto(request);

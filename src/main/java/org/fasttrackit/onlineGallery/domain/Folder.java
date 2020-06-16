@@ -17,11 +17,7 @@ public class Folder {
     @NotNull
     private String name;
     @NotNull
-    private String path;
-    @NotNull
     private int numberOfFilesInside;
-    @NotNull
-    private long sizeInKb;
     @NotNull
     private Date createdDate;
 
@@ -52,28 +48,12 @@ public class Folder {
         this.name = name;
     }
 
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
     public int getNumberOfFilesInside() {
         return numberOfFilesInside;
     }
 
     public void setNumberOfFilesInside(int numberOfFilesInside) {
         this.numberOfFilesInside = numberOfFilesInside;
-    }
-
-    public long getSizeInKb() {
-        return sizeInKb;
-    }
-
-    public void setSizeInKb(long sizeInKb) {
-        this.sizeInKb = sizeInKb;
     }
 
     public Set<Photo> getPhotos() {
@@ -89,9 +69,7 @@ public class Folder {
         return "Folder{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", path='" + path + '\'' +
                 ", numberOfFilesInside=" + numberOfFilesInside +
-                ", sizeInKb=" + sizeInKb +
                 ", createdDate=" + createdDate +
                 '}';
     }

@@ -16,7 +16,8 @@ public class Photo {
     @NotNull
     private String name;
     @NotNull
-    private String path;
+    @Lob
+    private String imageData;
     @NotNull
     private int xAxisDimension;
     @NotNull
@@ -90,12 +91,12 @@ public class Photo {
         this.name = name;
     }
 
-    public String getPath() {
-        return path;
+    public String getImageData() {
+        return imageData;
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public void setImageData(String imageData) {
+        this.imageData = imageData;
     }
 
     public int getxAxisDimension() {
@@ -143,7 +144,7 @@ public class Photo {
         return "Photo{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", path='" + path + '\'' +
+                ", imageData='" + imageData + '\'' +
                 ", xAxisDimension=" + xAxisDimension +
                 ", yAxisDimension=" + yAxisDimension +
                 ", sizeInKb=" + sizeInKb +

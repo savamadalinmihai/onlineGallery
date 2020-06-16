@@ -8,11 +8,8 @@ public class SaveFolderRequest {
     @NotNull
     private String name;
     @NotNull
-    private String path;
-    @NotNull
     private int numberOfFilesInside;
     @NotNull
-    private long sizeInKb;
     private Date createdDate;
 
     public Date getCreatedDate() {
@@ -31,14 +28,6 @@ public class SaveFolderRequest {
         this.name = name;
     }
 
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
     public int getNumberOfFilesInside() {
         return numberOfFilesInside;
     }
@@ -47,21 +36,11 @@ public class SaveFolderRequest {
         this.numberOfFilesInside = numberOfFilesInside;
     }
 
-    public long getSizeInKb() {
-        return sizeInKb;
-    }
-
-    public void setSizeInKb(long sizeInKb) {
-        this.sizeInKb = sizeInKb;
-    }
-
     @Override
     public String toString() {
         return "SaveFolderRequest{" +
                 "name='" + name + '\'' +
-                ", path='" + path + '\'' +
                 ", numberOfFilesInside=" + numberOfFilesInside +
-                ", sizeInKb=" + sizeInKb +
                 ", createdDate=" + createdDate +
                 '}';
     }
