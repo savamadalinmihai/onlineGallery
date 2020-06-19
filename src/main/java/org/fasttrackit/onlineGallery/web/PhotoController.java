@@ -5,6 +5,7 @@ import org.fasttrackit.onlineGallery.service.PhotoService;
 import org.fasttrackit.onlineGallery.transfer.photo.GetPhotosRequest;
 import org.fasttrackit.onlineGallery.transfer.photo.SavePhotoRequest;
 import org.fasttrackit.onlineGallery.transfer.tag.GetTagRequest;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,7 +14,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-
+import java.io.IOException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
 @CrossOrigin
 @RequestMapping("/photo")
 @RestController
@@ -29,8 +35,43 @@ public class PhotoController {
 
     @PostMapping
     public ResponseEntity<Photo> createPhoto(@Valid @RequestBody SavePhotoRequest request){
-        Photo photo = photoService.createPhoto(request);
-        return new ResponseEntity<>(photo, HttpStatus.CREATED);
+
+//        try {
+//            String imgUrl = request.getImageData();
+//            String newImgUrl = imgUrl.substring(28);
+//            String imgPath = "src/main/resources/images/";
+//            imgPath = imgPath + newImgUrl;
+//            saveImage(imgUrl, imgPath);
+//            request.setImageData(imgPath);
+            Photo photo = photoService.createPhoto(request);
+            return new ResponseEntity<>(photo, HttpStatus.CREATED);
+
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+
+
+    }
+
+    private void saveImage(String imgUrl,String imgPath) throws IOException {
+
+        String urlForFile = imgUrl;
+
+        URL url = new URL(urlForFile);
+        InputStream is = url.openStream();
+        OutputStream os = new FileOutputStream(imgPath);
+
+        byte[] b = new byte[2048];
+        int length;
+
+        while ((length = is.read(b)) != -1) {
+            os.write(b, 0, length);
+        }
+
+        is.close();
+        os.close();
+
     }
 
     @GetMapping("/{id}")

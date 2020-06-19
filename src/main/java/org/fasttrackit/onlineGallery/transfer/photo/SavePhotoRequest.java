@@ -1,5 +1,7 @@
 package org.fasttrackit.onlineGallery.transfer.photo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -19,6 +21,7 @@ public class SavePhotoRequest {
     private long sizeInKb;
     private boolean taggedAsFavorite;
     @NotNull
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date createdDate;
 
     public Date getCreatedDate() {

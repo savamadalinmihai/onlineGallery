@@ -1,5 +1,7 @@
 package org.fasttrackit.onlineGallery.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -26,6 +28,7 @@ public class Photo {
     private long sizeInKb;
     private boolean taggedAsFavorite;
     @NotNull
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date createdDate;
 
     @ManyToMany(cascade = CascadeType.MERGE)
