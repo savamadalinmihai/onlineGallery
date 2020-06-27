@@ -1,5 +1,7 @@
 package org.fasttrackit.onlineGallery.transfer.folder;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -10,6 +12,7 @@ public class SaveFolderRequest {
     @NotNull
     private int numberOfFilesInside;
     @NotNull
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date createdDate;
 
     public Date getCreatedDate() {
